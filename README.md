@@ -17,7 +17,6 @@ Each model is evaluated using Accuracy, Precision, Recall, F1-score, and Confusi
 | Name               | Student ID |
 |--------------------|------------|
 | Keroles Amgad      | 224101546  |
-| Mohamed Elsayed    | 224101551  |
 | Mahmoud Saad       | 224101559  |
 | Mahmoud Mohamed    | 224101560  |
 | Youssef Mahmoud    | 224101567  |
@@ -27,7 +26,7 @@ Each model is evaluated using Accuracy, Precision, Recall, F1-score, and Confusi
 - **Name:** Seattle Weather Dataset
 - **Source:** [Kaggle — Weather Prediction](https://www.kaggle.com/datasets/ananthr1/weather-prediction)
 - **File:** `seattle-weather.csv`
-- **Records:** 1,461 rows
+- **Records:** 1,461 rows  80% for train , 20% for test
 - **Features:** precipitation, temp_max, temp_min, wind
 - **Target:** weather (drizzle, fog, rain, snow, sun)
 
