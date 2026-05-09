@@ -17,7 +17,7 @@ Each model is evaluated using Accuracy, Precision, Recall, F1-score, and Confusi
 | Name               | Student ID |
 |--------------------|------------|
 | Keroles Amgad      | 224101546  |
-| Mahmoud Saad       | 224101559  |
+| Mahmoud Elaidi     | 224101559  |
 | Mahmoud Mohamed    | 224101560  |
 | Youssef Mahmoud    | 224101567  |
 
@@ -25,18 +25,19 @@ Each model is evaluated using Accuracy, Precision, Recall, F1-score, and Confusi
 
 - **Name:** Seattle Weather Dataset
 - **Source:** [Kaggle — Weather Prediction](https://www.kaggle.com/datasets/ananthr1/weather-prediction)
-- **File:** `seattle-weather.csv`
-- **Records:** 1,461 rows  80% for train , 20% for test
-- **Features:** precipitation, temp_max, temp_min, wind
-- **Target:** weather (drizzle, fog, rain, snow, sun)
+- **Loaded from:** `https://vega.github.io/vega-datasets/data/seattle-weather.csv` (no local file needed)
+- **Records:** 1,461 rows — 80% train / 20% test (stratified split, `random_state=42`)
+- **Features:** `precipitation`, `temp_max`, `temp_min`, `wind`
+- **Target:** `weather` — 5 classes: drizzle, fog, rain, snow, sun
 
 ## Project Structure
 
 ```
 ├── Weather_Prediction.ipynb   # Main notebook with all code, models, and results
-├── seattle-weather.csv        # Dataset
 └── README.md                  # This file
 ```
+
+> The dataset is fetched automatically from the web — no local CSV file is required.
 
 ## How to Run
 
@@ -44,9 +45,20 @@ Each model is evaluated using Accuracy, Precision, Recall, F1-score, and Confusi
    ```
    pip install numpy pandas matplotlib seaborn scikit-learn xgboost
    ```
-2. Place `seattle-weather.csv` in the same folder as the notebook.
-3. Open `Weather_Prediction.ipynb` in Jupyter Notebook, JupyterLab, VS Code, or Google Colab.
-4. Click **Run All**.
+   > Requires **XGBoost 2.0+** (default with the command above).
+2. Open `Weather_Prediction.ipynb` in Jupyter Notebook, JupyterLab, VS Code, or Google Colab.
+3. Click **Run All** — the dataset is downloaded automatically.
+
+## Model Configuration
+
+| Model         | Key Hyperparameters                                          |
+|---------------|--------------------------------------------------------------|
+| Random Forest | `n_estimators=200`, `random_state=42`                        |
+| KNN           | `n_neighbors=7` (trained on scaled features)                 |
+| SVM           | `kernel='rbf'`, `C=1.0` (trained on scaled features)        |
+| XGBoost       | `n_estimators=200`, `max_depth=4`, `learning_rate=0.1`      |
+
+> KNN and SVM use `StandardScaler`-normalized features; Random Forest and XGBoost use raw features.
 
 ## Results Summary
 
@@ -57,7 +69,7 @@ Each model is evaluated using Accuracy, Precision, Recall, F1-score, and Confusi
 | SVM           | 0.6553   | 0.6134    | 0.6553 | 0.6101   |
 | XGBoost       | 0.6280   | 0.6122    | 0.6280 | 0.6180   |
 
-**Best Model:** Random Forest (highest F1-score)
+**Best Model:** Random Forest (highest F1-score: 0.6428)
 
 ## Tools and Libraries
 
